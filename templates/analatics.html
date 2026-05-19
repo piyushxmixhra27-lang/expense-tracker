@@ -118,35 +118,35 @@
 <ul class="flex-1 flex flex-col gap-1">
 <!-- Dashboard -->
 <li>
-<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="#">
+<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="{{ url_for('dashboard') }}">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="text-label-caps font-label-caps">Dashboard</span>
 </a>
 </li>
 <!-- Transactions -->
 <li>
-<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="#">
+<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="{{ url_for('transactions') }}">
 <span class="material-symbols-outlined">payments</span>
 <span class="text-label-caps font-label-caps">Transactions</span>
 </a>
 </li>
 <!-- Budgets -->
 <li>
-<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="#">
+<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="{{ url_for('budget') }}">
 <span class="material-symbols-outlined">account_balance_wallet</span>
 <span class="text-label-caps font-label-caps">Budgets</span>
 </a>
 </li>
 <!-- Analytics (Active) -->
 <li>
-<a class="flex items-center gap-4 px-gutter py-3 bg-primary text-on-primary font-bold rounded-none border-l-4 border-secondary-fixed translate-x-1 transition-transform duration-150" href="#">
+<a class="flex items-center gap-4 px-gutter py-3 bg-primary text-on-primary font-bold rounded-none border-l-4 border-secondary-fixed translate-x-1 transition-transform duration-150" href="{{ url_for('analytics') }}">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insights</span>
 <span class="text-label-caps font-label-caps">Analytics</span>
 </a>
 </li>
 <!-- Reports -->
 <li>
-<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="#">
+<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="{{ url_for('reports') }}">
 <span class="material-symbols-outlined">description</span>
 <span class="text-label-caps font-label-caps">Reports</span>
 </a>
@@ -161,7 +161,7 @@
 </a>
 </li>
 <li>
-<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="#">
+<a class="flex items-center gap-4 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-all duration-200" href="{{ url_for('logout') }}">
 <span class="material-symbols-outlined">logout</span>
 <span class="text-label-caps font-label-caps">Logout</span>
 </a>

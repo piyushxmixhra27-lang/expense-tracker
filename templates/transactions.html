@@ -109,10 +109,11 @@
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row">
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col md:flex-row animate-fade-in">
 <!-- SideNavBar (Desktop) -->
-<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col pt-16 z-40 bg-surface-container-lowest dark:bg-surface-container-lowest text-secondary-fixed dark:text-secondary-fixed w-64 border-r border-outline-variant">
+<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col pt-16 z-40 glass-panel text-secondary-fixed dark:text-secondary-fixed w-64 border-r border-outline-variant">
 <div class="px-gutter mb-8">
 <h1 class="text-headline-sm font-headline-sm font-bold text-primary">Wisdom Admin</h1>
 <p class="text-label-caps font-label-caps text-on-surface-variant mt-2">Premium Tier</p>
@@ -125,31 +126,31 @@
 </div>
 <ul class="flex-1 flex flex-col space-y-2 px-4">
 <li>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="#">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="{{ url_for('dashboard') }}">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="text-label-caps font-label-caps">Dashboard</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-4 px-4 py-3 bg-primary text-on-primary font-bold rounded-none border-l-4 border-secondary-fixed translate-x-1 transition-transform duration-150" href="#">
+<a class="flex items-center gap-4 px-4 py-3 bg-primary text-on-primary font-bold rounded-none border-l-4 border-secondary-fixed translate-x-1 transition-transform duration-150" href="{{ url_for('transactions') }}">
 <span class="material-symbols-outlined">payments</span>
 <span class="text-label-caps font-label-caps">Transactions</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="#">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="{{ url_for('budget') }}">
 <span class="material-symbols-outlined">account_balance_wallet</span>
 <span class="text-label-caps font-label-caps">Budgets</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="#">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="{{ url_for('analytics') }}">
 <span class="material-symbols-outlined">insights</span>
 <span class="text-label-caps font-label-caps">Analytics</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="#">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="{{ url_for('reports') }}">
 <span class="material-symbols-outlined">description</span>
 <span class="text-label-caps font-label-caps">Reports</span>
 </a>
@@ -164,7 +165,7 @@
 </a>
 </li>
 <li>
-<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="#">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors duration-200" href="{{ url_for('logout') }}">
 <span class="material-symbols-outlined">logout</span>
 <span class="text-label-caps font-label-caps">Logout</span>
 </a>
@@ -207,13 +208,13 @@
 <h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">Expenses</h2>
 <p class="text-body-md font-body-md text-on-surface-variant mt-2">Manage and review recent transactions.</p>
 </div>
-<button class="bg-[#FF3B30] text-black px-6 py-3 font-label-caps text-label-caps rounded-none border-none flex items-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap">
+<button onclick="document.getElementById('addExpenseModal').classList.remove('hidden')" class="bg-[#FF3B30] text-black px-6 py-3 font-label-caps text-label-caps rounded-none border-none flex items-center gap-2 hover:opacity-90 transition-opacity whitespace-nowrap">
 <span class="material-symbols-outlined">add</span>
                     Add Expense
                 </button>
 </div>
 <!-- Filtering Section -->
-<div class="bg-[#121212] border border-[#2A2A2A] p-6 rounded-none">
+<div class="glass-card p-6 rounded-xl animate-slide-up delay-100">
 <div class="flex flex-col md:flex-row gap-6">
 <div class="flex-1 flex flex-col gap-2">
 <label class="text-label-caps font-label-caps text-on-surface-variant uppercase">Date Range</label>
@@ -240,7 +241,7 @@
 </div>
 </div>
 <!-- Data Table -->
-<div class="bg-[#121212] border border-[#2A2A2A] rounded-none overflow-x-auto">
+<div class="glass-card rounded-xl overflow-x-auto mt-6 animate-slide-up delay-200">
 <table class="w-full text-left border-collapse min-w-[800px]">
 <thead>
 <tr class="border-b border-[#2A2A2A]">
@@ -253,53 +254,24 @@
 </tr>
 </thead>
 <tbody>
+{% for expense in expenses %}
 <tr class="border-b border-[#2A2A2A] hover:bg-[#1E1E1E] transition-colors">
-<td class="p-6 text-body-md font-body-md text-on-surface">Oct 24, 2023</td>
-<td class="p-6 text-body-md font-body-md text-on-surface font-medium">Acme Corp Software License</td>
+<td class="p-6 text-body-md font-body-md text-on-surface">{{ expense.date.strftime('%b %d, %Y') }}</td>
+<td class="p-6 text-body-md font-body-md text-on-surface font-medium">{{ expense.title }}</td>
 <td class="p-6">
-<span class="bg-[#00285C] text-white px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none">Software</span>
+<span class="bg-[#00285C] text-white px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none">{{ expense.category }}</span>
 </td>
-<td class="p-6 text-data-sm font-data-sm text-[#FF3B30] text-right">-$1,250.00</td>
+<td class="p-6 text-data-sm font-data-sm text-[#FF3B30] text-right">-${{ "%.2f"|format(expense.amount) }}</td>
 <td class="p-6 text-center">
 <span class="bg-[#1c1b1b] border border-[#2A2A2A] text-on-surface px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none inline-flex items-center gap-1">
+{% if expense.status == 'Approved' %}
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Approved
+{% elif expense.status == 'Pending' %}
 <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span> Pending
-                                </span>
-</td>
-<td class="p-6 text-right">
-<button class="text-on-surface-variant hover:text-on-surface transition-colors">
-<span class="material-symbols-outlined text-sm">more_vert</span>
-</button>
-</td>
-</tr>
-<tr class="border-b border-[#2A2A2A] hover:bg-[#1E1E1E] transition-colors">
-<td class="p-6 text-body-md font-body-md text-on-surface">Oct 22, 2023</td>
-<td class="p-6 text-body-md font-body-md text-on-surface font-medium">Q3 Marketing Campaign</td>
-<td class="p-6">
-<span class="bg-[#00285C] text-white px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none">Marketing</span>
-</td>
-<td class="p-6 text-data-sm font-data-sm text-[#FF3B30] text-right">-$4,800.50</td>
-<td class="p-6 text-center">
-<span class="bg-[#1c1b1b] border border-[#2A2A2A] text-on-surface px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none inline-flex items-center gap-1">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Approved
-                                </span>
-</td>
-<td class="p-6 text-right">
-<button class="text-on-surface-variant hover:text-on-surface transition-colors">
-<span class="material-symbols-outlined text-sm">more_vert</span>
-</button>
-</td>
-</tr>
-<tr class="border-b border-[#2A2A2A] hover:bg-[#1E1E1E] transition-colors">
-<td class="p-6 text-body-md font-body-md text-on-surface">Oct 18, 2023</td>
-<td class="p-6 text-body-md font-body-md text-on-surface font-medium">Office Supplies Restock</td>
-<td class="p-6">
-<span class="bg-[#00285C] text-white px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none">Operations</span>
-</td>
-<td class="p-6 text-data-sm font-data-sm text-[#FF3B30] text-right">-$342.10</td>
-<td class="p-6 text-center">
-<span class="bg-[#1c1b1b] border border-[#2A2A2A] text-on-surface px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none inline-flex items-center gap-1">
+{% else %}
 <span class="w-2 h-2 rounded-full bg-[#FF3B30]"></span> Rejected
-                                </span>
+{% endif %}
+</span>
 </td>
 <td class="p-6 text-right">
 <button class="text-on-surface-variant hover:text-on-surface transition-colors">
@@ -307,24 +279,11 @@
 </button>
 </td>
 </tr>
-<tr class="hover:bg-[#1E1E1E] transition-colors">
-<td class="p-6 text-body-md font-body-md text-on-surface">Oct 15, 2023</td>
-<td class="p-6 text-body-md font-body-md text-on-surface font-medium">Client Dinner - Nobu</td>
-<td class="p-6">
-<span class="bg-[#00285C] text-white px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none">Travel &amp; Meals</span>
-</td>
-<td class="p-6 text-data-sm font-data-sm text-[#FF3B30] text-right">-$850.00</td>
-<td class="p-6 text-center">
-<span class="bg-[#1c1b1b] border border-[#2A2A2A] text-on-surface px-3 py-1 font-label-caps text-label-caps text-[10px] rounded-none inline-flex items-center gap-1">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Approved
-                                </span>
-</td>
-<td class="p-6 text-right">
-<button class="text-on-surface-variant hover:text-on-surface transition-colors">
-<span class="material-symbols-outlined text-sm">more_vert</span>
-</button>
-</td>
+{% else %}
+<tr>
+    <td colspan="6" class="p-6 text-center text-on-surface-variant">No expenses found.</td>
 </tr>
+{% endfor %}
 </tbody>
 </table>
 <!-- Pagination / Footer -->
@@ -337,5 +296,44 @@
 </div>
 </div>
 </div>
+</div>
 </main>
+
+<!-- Add Expense Modal -->
+<div id="addExpenseModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+    <div class="glass-card w-full max-w-md p-6 rounded-xl animate-slide-up border border-outline-variant relative">
+        <button onclick="document.getElementById('addExpenseModal').classList.add('hidden')" class="absolute top-4 right-4 text-on-surface-variant hover:text-white">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="text-headline-md font-headline-md text-on-surface mb-6">Add New Expense</h2>
+        <form action="{{ url_for('add_expense') }}" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-label-caps text-on-surface-variant mb-1">Title</label>
+                <input type="text" name="title" required class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg p-3 text-on-surface focus:border-primary outline-none" placeholder="e.g. Office Supplies">
+            </div>
+            <div>
+                <label class="block text-label-caps text-on-surface-variant mb-1">Amount ($)</label>
+                <input type="number" step="0.01" name="amount" required class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg p-3 text-on-surface focus:border-primary outline-none" placeholder="0.00">
+            </div>
+            <div>
+                <label class="block text-label-caps text-on-surface-variant mb-1">Category</label>
+                <select name="category" required class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg p-3 text-on-surface focus:border-primary outline-none">
+                    <option value="Equipment">Equipment</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Software">Software</option>
+                    <option value="Food & Dining">Food & Dining</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-label-caps text-on-surface-variant mb-1">Date</label>
+                <input type="date" name="date" required class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg p-3 text-on-surface focus:border-primary outline-none">
+            </div>
+            <button type="submit" class="w-full mt-4 bg-primary hover:bg-[#FF3B30] text-black font-bold py-3 rounded-lg transition-colors shadow-[0_0_15px_rgba(255,59,48,0.3)]">
+                Save Expense
+            </button>
+        </form>
+    </div>
+</div>
+
 </body></html>
