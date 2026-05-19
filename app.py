@@ -1,9 +1,12 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, Response, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
-
+import pandas as pd
+from fpdf import FPDF
+from io import BytesIO, StringIO
+import csv
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expense.db'
@@ -34,8 +37,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 with app.app_context():
-    # Only drop and recreate in development to apply schema changes
-    db.drop_all()
+    # Create tables if they don't exist
     db.create_all()
     # Create default admin user
     if not User.query.filter_by(username='admin@company.com').first():
@@ -148,6 +150,82 @@ def budget():
 @login_required
 def reports():
     return render_template('reports.html')
+
+@app.route('/export', methods=['POST'])
+@login_required
+def export_data():
+    format_type = request.form.get('format', 'csv')
+    expenses = Expense.query.filter_by(user_id=current_user.id).all()
+    
+    # Create DataFrame
+    data = []
+    for exp in expenses:
+        data.append({
+            'Date': exp.date.strftime('%Y-%m-%d'),
+            'Title': exp.title,
+            'Category': exp.category,
+            'Amount': exp.amount,
+            'Status': exp.status
+        })
+    df = pd.DataFrame(data)
+    
+    if format_type == 'csv':
+        output = StringIO()
+        df.to_csv(output, index=False)
+        return Response(
+            output.getvalue(),
+            mimetype="text/csv",
+            headers={"Content-disposition": "attachment; filename=expenses.csv"}
+        )
+    
+    elif format_type == 'excel':
+        output = BytesIO()
+        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False, sheet_name='Expenses')
+        output.seek(0)
+        return send_file(
+            output,
+            mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            as_attachment=True,
+            download_name='expenses.xlsx'
+        )
+        
+    elif format_type == 'pdf':
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Helvetica", size=12)
+        pdf.cell(200, 10, text="Wisdom Expense Manager - Report", new_x="LMARGIN", new_y="NEXT", align='C')
+        
+        pdf.set_font("Helvetica", size=10)
+        # Header
+        pdf.cell(40, 10, text="Date", border=1)
+        pdf.cell(60, 10, text="Title", border=1)
+        pdf.cell(40, 10, text="Category", border=1)
+        pdf.cell(30, 10, text="Amount", border=1)
+        pdf.cell(20, 10, text="Status", border=1, new_x="LMARGIN", new_y="NEXT")
+        
+        # Rows
+        for exp in expenses:
+            pdf.cell(40, 10, text=exp.date.strftime('%Y-%m-%d'), border=1)
+            title = exp.title[:25] + "..." if len(exp.title) > 25 else exp.title
+            pdf.cell(60, 10, text=title, border=1)
+            pdf.cell(40, 10, text=exp.category, border=1)
+            pdf.cell(30, 10, text=f"Rs {exp.amount:.2f}", border=1)
+            pdf.cell(20, 10, text=exp.status, border=1, new_x="LMARGIN", new_y="NEXT")
+            
+        output = BytesIO()
+        pdf_bytes = pdf.output()
+        output.write(pdf_bytes)
+        output.seek(0)
+        
+        return send_file(
+            output,
+            mimetype='application/pdf',
+            as_attachment=True,
+            download_name='expenses.pdf'
+        )
+
+    return redirect(url_for('reports'))
 
 @app.route('/transactions')
 @login_required
