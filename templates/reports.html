@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports - Wisdom Expense</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#004493",
+                        "primary-fixed": "#ffdad5",
+                        "background": "#131313",
+                        "outline-variant": "#5d3f3b",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed-variant": "#930005",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#221b00",
+                        "on-surface-variant": "#e7bdb7",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "inverse-on-surface": "#313030",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-primary": "#690003",
+                        "on-error": "#690005",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-low": "#1c1b1b",
+                        "on-background": "#e5e2e1",
+                        "on-primary-container": "#5c0002",
+                        "surface-dim": "#131313",
+                        "on-primary-fixed": "#410001",
+                        "on-secondary": "#3a3000",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#ffb4aa",
+                        "primary-fixed-dim": "#ffb4aa",
+                        "surface": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#ff5545",
+                        "tertiary": "#adc6ff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-highest": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "secondary-fixed": "#ffe16d",
+                        "secondary": "#fff9ef",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary": "#002e69",
+                        "surface-variant": "#353534",
+                        "on-secondary-container": "#725f00",
+                        "tertiary-container": "#4b8eff",
+                        "on-tertiary-container": "#00285c",
+                        "secondary-container": "#ffdb3c",
+                        "outline": "#ad8883",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#544600",
+                        "inverse-primary": "#c0000a",
+                        "primary": "#ffb4aa",
+                        "on-tertiary-fixed": "#001a41"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "data-lg": ["JetBrains Mono"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "data-sm": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "data-lg": ["24px", { "lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for brutalist feel */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; border-left: 1px solid #2a2a2a; }
+        ::-webkit-scrollbar-thumb { background: #353534; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffb4aa; }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 z-50 flex items-center justify-between w-full h-16 px-gutter bg-background/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-4 w-64">
+<span class="text-headline-md font-headline-md font-black tracking-tighter text-primary">Wisdom Expense</span>
+</div>
+<div class="flex-1 flex items-center px-8">
+<div class="flex items-center bg-surface-container-lowest border border-surface-container-high px-4 py-2 w-96 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-3 text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none text-body-md font-body-md text-on-surface w-full placeholder:text-on-surface-variant/50 focus:ring-0" placeholder="Search records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-primary hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-none flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-primary hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-none flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 bg-surface-container-high border border-surface-container-highest overflow-hidden">
+<img alt="Administrator Profile" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9wvQUciDFuszTRfsVYlz3oZgph7oCma42y23f2csvEzkJ5T2WhKcM7Z3KAJa1gC_MJVHeDLbQhBEa9w-qZx8S3avW3XUBroUHUbJCKnz-r7kG0a58g7Rg3TGS_OIqP9FENySryONBz5Yy2IL6ozG82oV0eRQDQ1WSG29Pf3zyxKKc1ZvS7gAikC5PU5JqoKdHMh7FpU7eiDoYMS2Du37uRf5yeEiFTFOblJMTSzWVQeTzy6nCafs2FTLvJKZM0MajGPiH1TZ4IQw"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full flex flex-col pt-16 z-40 w-64 bg-surface-container-lowest border-r border-outline-variant">
+<div class="p-6 border-b border-surface-container-high flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container flex items-center justify-center border border-primary">
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary-container">W</span>
+</div>
+<div>
+<div class="text-headline-md font-headline-md font-bold text-on-surface">Wisdom Admin</div>
+<div class="text-label-caps font-label-caps text-secondary-fixed mt-1">Premium Tier</div>
+</div>
+</div>
+<div class="flex-1 py-6 flex flex-col gap-2 px-4">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+            Dashboard
+        </a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+            Transactions
+        </a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+            Budgets
+        </a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+            Analytics
+        </a>
+<a class="flex items-center gap-4 px-4 py-3 bg-primary text-on-primary font-bold border-l-4 border-secondary-fixed text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+            Reports
+        </a>
+</div>
+<div class="p-4">
+<button class="w-full bg-primary-container text-on-primary-container border border-primary font-label-caps text-label-caps py-4 hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            New Entry
+        </button>
+</div>
+<div class="border-t border-surface-container-high p-4 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+            Settings
+        </a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-label-caps font-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+            Logout
+        </a>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-64 pt-16 p-gutter w-full min-h-screen flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex justify-between items-end border-b border-surface-container-high pb-6">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2 tracking-tighter">Reports Builder</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Configure parameters, select formats, and generate custom financial documentation.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container px-4 py-2 border border-surface-container-high flex items-center gap-2">
+<div class="w-2 h-2 bg-primary rounded-none animate-pulse"></div>
+<span class="font-data-sm text-data-sm text-on-surface uppercase">System Status: Optimal</span>
+</div>
+</div>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Report Configuration -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<div class="bg-surface border border-surface-container-high flex flex-col">
+<div class="px-6 py-4 border-b border-surface-container-high bg-surface-container-lowest">
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider">Report Configuration</h2>
+</div>
+<div class="p-6 flex flex-col gap-10">
+<!-- 1. Select Data Scope (Fixed Grid) -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">Select Data Scope</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<label class="cursor-pointer group">
+<input checked="" class="peer sr-only" name="scope" type="radio"/>
+<div class="border border-surface-container-high p-5 h-full peer-checked:border-primary peer-checked:bg-surface-container-high transition-all flex flex-col gap-4">
+<span class="material-symbols-outlined text-primary text-[32px]">account_balance</span>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface mb-1 group-hover:text-primary transition-colors">Consolidated Ledger</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm leading-relaxed">All branches and accounts</div>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="scope" type="radio"/>
+<div class="border border-surface-container-high p-5 h-full peer-checked:border-primary peer-checked:bg-surface-container-high transition-all flex flex-col gap-4">
+<span class="material-symbols-outlined text-secondary-fixed text-[32px]">trending_up</span>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface mb-1 group-hover:text-secondary-fixed transition-colors">P&amp;L Analysis</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm leading-relaxed">Revenue vs Expenses</div>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="scope" type="radio"/>
+<div class="border border-surface-container-high p-5 h-full peer-checked:border-primary peer-checked:bg-surface-container-high transition-all flex flex-col gap-4">
+<span class="material-symbols-outlined text-tertiary-fixed text-[32px]">receipt_long</span>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface mb-1 group-hover:text-tertiary-fixed transition-colors">Tax Compliance</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm leading-relaxed">Deductibles &amp; Liabilities</div>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- 2. Date Range (Fixed Spacing & Padding) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-lowest p-6 border border-surface-container-high">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">Start Date</label>
+<div class="flex items-center border-b border-surface-container-high pb-3 focus-within:border-primary group">
+<span class="material-symbols-outlined text-on-surface-variant mr-4 text-[24px]">calendar_today</span>
+<input class="bg-transparent border-none outline-none font-data-lg text-data-lg text-on-surface w-full p-0 focus:ring-0" type="date" value="2023-01-01"/>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 border border-surface-container-high">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">End Date</label>
+<div class="flex items-center border-b border-surface-container-high pb-3 focus-within:border-primary group">
+<span class="material-symbols-outlined text-on-surface-variant mr-4 text-[24px]">calendar_today</span>
+<input class="bg-transparent border-none outline-none font-data-lg text-data-lg text-on-surface w-full p-0 focus:ring-0" type="date" value="2023-12-31"/>
+</div>
+</div>
+</div>
+<!-- Additional Filters -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">Active Filters</label>
+<div class="flex flex-wrap gap-3">
+<div class="bg-tertiary-container text-on-tertiary-container px-4 py-2 font-data-sm text-data-sm flex items-center gap-3 border border-outline shadow-sm">
+                                DEPT: ENGINEERING
+                                <span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-error transition-colors">close</span>
+</div>
+<div class="bg-surface-container-high text-on-surface px-4 py-2 font-data-sm text-data-sm flex items-center gap-3 border border-surface-container-highest cursor-pointer hover:border-primary hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[16px]">add</span> ADD FILTER
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Export Format & Execute -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<!-- 4. Export Format (Fixed Alignment) -->
+<div class="bg-surface border border-surface-container-high flex flex-col h-full">
+<div class="px-6 py-4 border-b border-surface-container-high bg-surface-container-lowest">
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider">Export Format</h2>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-grow">
+<label class="cursor-pointer group block">
+<input checked="" class="peer sr-only" name="format" type="radio"/>
+<div class="border border-surface-container-high p-5 flex items-center gap-5 peer-checked:bg-surface-container-high peer-checked:border-primary transition-all relative">
+<span class="material-symbols-outlined text-primary text-[32px] shrink-0">picture_as_pdf</span>
+<div class="flex-grow">
+<div class="font-label-caps text-label-caps text-on-surface">Secure PDF</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-xs mt-1">Board-ready formatting</div>
+</div>
+<div class="w-5 h-5 border-2 border-on-surface-variant rounded-full peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 bg-primary rounded-full hidden peer-checked:block"></div>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group block">
+<input class="peer sr-only" name="format" type="radio"/>
+<div class="border border-surface-container-high p-5 flex items-center gap-5 peer-checked:bg-surface-container-high peer-checked:border-primary transition-all relative">
+<span class="material-symbols-outlined text-secondary-fixed text-[32px] shrink-0">table_view</span>
+<div class="flex-grow">
+<div class="font-label-caps text-label-caps text-on-surface">Raw CSV</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-xs mt-1">For database import</div>
+</div>
+<div class="w-5 h-5 border-2 border-on-surface-variant rounded-full peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 bg-primary rounded-full hidden peer-checked:block"></div>
+</div>
+</div>
+</label>
+<label class="cursor-pointer group block">
+<input class="peer sr-only" name="format" type="radio"/>
+<div class="border border-surface-container-high p-5 flex items-center gap-5 peer-checked:bg-surface-container-high peer-checked:border-primary transition-all relative">
+<span class="material-symbols-outlined text-tertiary-fixed text-[32px] shrink-0">analytics</span>
+<div class="flex-grow">
+<div class="font-label-caps text-label-caps text-on-surface">Excel Worksheet</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-xs mt-1">Pre-configured macros</div>
+</div>
+<div class="w-5 h-5 border-2 border-on-surface-variant rounded-full peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 bg-primary rounded-full hidden peer-checked:block"></div>
+</div>
+</div>
+</label>
+</div>
+<!-- 3. Execute Build (Fixed Alignment) -->
+<div class="p-6 pt-0">
+<button class="bg-primary-container text-on-primary-container w-full py-6 flex items-center justify-center gap-3 hover:bg-primary hover:text-on-primary transition-all border border-primary shadow-[4px_4px_0px_0px_rgba(255,180,170,0.2)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+<span class="material-symbols-outlined animate-pulse">bolt</span>
+<span class="font-headline-md text-headline-md font-bold uppercase tracking-[0.2em]">Execute Build</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 5. Report Ledger (Fixed Spacing & Alignment) -->
+<div class="col-span-12 bg-surface border border-surface-container-high flex flex-col overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-container-high bg-surface-container-lowest flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wider">Report Ledger</h2>
+<button class="font-label-caps text-label-caps text-primary hover:text-on-surface transition-colors uppercase border-b-2 border-primary/20 hover:border-primary text-sm tracking-widest">View Archive</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-lowest border-b border-surface-container-high">
+<tr class="font-label-caps text-label-caps text-on-surface-variant text-[11px] tracking-widest">
+<th class="px-6 py-4 font-bold">IDENTIFIER / NAME</th>
+<th class="px-6 py-4 font-bold">PERIOD RANGE</th>
+<th class="px-6 py-4 font-bold">TIMESTAMP</th>
+<th class="px-6 py-4 font-bold">FORMAT</th>
+<th class="px-6 py-4 font-bold text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-data-sm text-data-sm text-on-surface">Q3_FY23_CONSOLIDATED</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs mt-1">Full Organization Audit</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-data-sm text-data-sm text-on-surface-variant">01/07/23 — 30/09/23</span>
+</td>
+<td class="px-6 py-5">
+<span class="font-data-sm text-data-sm text-on-surface">Today, 09:41</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-block bg-surface-container-high border border-primary/30 px-3 py-1 font-data-sm text-data-sm text-primary">PDF</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-all p-2 bg-surface-container-lowest border border-surface-container-high hover:border-primary group-hover:scale-110">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-data-sm text-data-sm text-on-surface">M10_DEPT_ENGINEERING_EXP</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs mt-1">Monthly Burn Rate</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-data-sm text-data-sm text-on-surface-variant">01/10/23 — 31/10/23</span>
+</td>
+<td class="px-6 py-5">
+<span class="font-data-sm text-data-sm text-on-surface">Yesterday, 16:20</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-block bg-surface-container-high border border-secondary-fixed/30 px-3 py-1 font-data-sm text-data-sm text-secondary-fixed">CSV</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-all p-2 bg-surface-container-lowest border border-surface-container-high hover:border-primary group-hover:scale-110">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors group border-b-0">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-data-sm text-data-sm text-on-surface">YTD_TAX_LIABILITY_EST</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs mt-1">Preliminary Assessment</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="font-data-sm text-data-sm text-on-surface-variant">01/01/23 — 15/11/23</span>
+</td>
+<td class="px-6 py-5">
+<span class="font-data-sm text-data-sm text-on-surface">15 Nov, 11:05</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-block bg-surface-container-high border border-tertiary-fixed/30 px-3 py-1 font-data-sm text-data-sm text-tertiary-fixed">XLSX</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-all p-2 bg-surface-container-lowest border border-surface-container-high hover:border-primary group-hover:scale-110">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>

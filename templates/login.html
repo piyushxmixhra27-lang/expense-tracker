@@ -1,0 +1,171 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Wisdom Expense Manager - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#690003",
+                        "background": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "primary-fixed-dim": "#ffb4aa",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffdad5",
+                        "surface-variant": "#353534",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-tertiary": "#003545",
+                        "secondary-container": "#454747",
+                        "surface": "#131313",
+                        "tertiary": "#68d3fc",
+                        "on-surface": "#e5e2e1",
+                        "primary-container": "#ff5545",
+                        "error-container": "#93000a",
+                        "on-secondary": "#2f3131",
+                        "tertiary-fixed": "#bbe9ff",
+                        "on-tertiary-fixed": "#001f29",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container-highest": "#353534",
+                        "secondary": "#c6c6c7",
+                        "on-tertiary-container": "#002e3c",
+                        "primary": "#ffb4aa",
+                        "surface-dim": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "on-surface-variant": "#e7bdb7",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#004d63",
+                        "on-secondary-container": "#b4b5b5",
+                        "inverse-primary": "#c0000a",
+                        "on-primary-fixed": "#410001",
+                        "surface-container": "#201f1f",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-primary-container": "#5c0002",
+                        "outline": "#ad8883",
+                        "tertiary-container": "#1d9cc3",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#ffb4aa",
+                        "tertiary-fixed-dim": "#68d3fc",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed-variant": "#930005",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-background": "#e5e2e1",
+                        "outline-variant": "#5d3f3b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "max-width": "1440px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0D0D0D;
+            background-image: radial-gradient(circle at 15% 50%, rgba(255, 59, 48, 0.08), transparent 25%),
+                              radial-gradient(circle at 85% 30%, rgba(255, 59, 48, 0.05), transparent 25%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop text-on-surface antialiased">
+<div class="w-full grid grid-cols-1 gap-0 rounded-2xl overflow-hidden bg-[#1A1A1A]/60 backdrop-blur-[24px] border border-white/10 shadow-2xl relative max-w-[450px]">
+<!-- Subtle inner glow effect -->
+<div class="absolute inset-0 border border-white/5 rounded-2xl pointer-events-none z-10"></div>
+<!-- Left: Branding & Illustration -->
+
+<!-- Right: Login Form -->
+<div class="p-margin-mobile md:p-lg flex flex-col justify-center relative z-20">
+<div class="flex items-center gap-sm mb-lg justify-center text-center">
+<span class="material-symbols-outlined text-primary text-[28px] font-[FILL=1]">account_balance_wallet</span>
+<h1 class="font-headline-md text-headline-md text-on-surface">Wisdom</h1>
+</div>
+<div class="mb-lg text-center">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Welcome back</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enter your credentials to access your dashboard.</p>
+</div>
+<form class="space-y-md">
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="username">Username</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">person</span>
+<input class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg py-sm pl-xl pr-sm font-body-md text-body-md text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" id="username" name="username" placeholder="admin@company.com" type="text">
+</div>
+</div>
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
+<input class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg py-sm pl-xl pr-sm font-body-md text-body-md text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all duration-300" id="password" name="password" placeholder="••••••••" type="password">
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded bg-[#1A1A1A] border-white/10 text-[#FF3B30] focus:ring-[#FF3B30]/50 focus:ring-offset-[#131313]" id="remember-me" name="remember-me" type="checkbox">
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember-me">
+                            Remember me
+                        </label>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed transition-colors" href="#">
+                        Forgot Password?
+                    </a>
+</div>
+<button class="w-full bg-[#FF3B30] hover:bg-[#FF3B30]/90 text-white font-label-md text-label-md py-sm rounded-lg transition-all duration-300 flex items-center justify-center gap-xs shadow-[0_0_15px_rgba(255,59,48,0.3)] hover:shadow-[0_0_25px_rgba(255,59,48,0.5)]" type="button">
+<span class="">Login</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-xl text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant/40 uppercase tracking-widest">
+                    Authorized Personnel Only
+                </p>
+</div>
+</div>
+</div>
+
+
+</body></html>

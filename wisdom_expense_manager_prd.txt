@@ -1,0 +1,34 @@
+# Wisdom Expense Manager - Product Requirements Document
+
+## Project Overview
+**Name:** Wisdom Expense Manager  
+**Client:** Wisdom The Global School  
+**Type:** School Expense Tracking & Financial Management System  
+**Tech Stack:** HTML5, CSS3, JS, Bootstrap 5 (No React/Tailwind/Next.js)
+
+## Design Vision
+- **Style:** Premium, Bold, Clean, Modern SaaS (Stripe/Linear/Notion inspired).
+- **Feel:** Trustworthy, Professional, Organized, Enterprise-grade.
+- **Visuals:** Glassmorphism, smooth shadows, rounded cards, elegant gradients, animated counters.
+- **Palette:** Deep Blue, Royal Blue, White, Soft Gray (Primary); Emerald Green, Orange, Red, Cyan (Accents).
+
+## User Roles
+- **Admin:** Full access, user management, audit logs.
+- **Accountant:** Expense entry, bill uploads, reports.
+- **Viewer:** Read-only dashboard and reports.
+
+## Core Modules & Screens
+1. **Login Page:** Premium glassmorphism card, branded illustration area, animated background.
+2. **Dashboard:** KPI cards (Total/Monthly/Today/Highest Category), Monthly Graph, Category Pie Chart, Recent Activity.
+3. **Expense Management:** Search, filters, data table (Title, Amount, Category, Vendor, etc.), status badges, pagination.
+4. **Reports:** Monthly/Yearly/Category-wise, custom ranges, export (PDF/Excel/CSV).
+5. **Analytics:** Spending trends, monthly comparisons, expense distribution.
+6. **User Management:** User table, role badges, add-user modal.
+7. **Audit Logs:** Activity timeline, user actions, login activity.
+
+## UI Requirements
+- **Sidebar:** Collapsible, active highlights, smooth hover.
+- **Top Navbar:** Search, notifications, profile dropdown, quick actions.
+- **Tables:** Responsive, clean borders, hover states, action dropdowns.
+- **Charts:** Modern containers, trend sections.
+- **Animations:** Smooth transitions, loading shimmers, subtle motion.
