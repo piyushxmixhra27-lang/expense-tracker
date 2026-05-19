@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Settings - Wisdom Expense</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#ffb4aa",
+                        "secondary-fixed": "#ffe16d",
+                        "background": "#131313",
+                        "surface": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#e7bdb7",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#5d3f3b"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-background text-on-surface font-sans min-h-screen flex animate-fade-in">
+    <!-- SideNavBar (Desktop) -->
+    <nav class="hidden md:flex fixed left-0 top-0 h-full flex-col pt-16 z-40 glass-panel border-r border-outline-variant w-64">
+        <div class="px-6 mb-8">
+            <h2 class="text-2xl font-bold text-primary">Wisdom App</h2>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mt-1">{{ current_user.role|capitalize }} Tier</p>
+        </div>
+        <div class="flex-1 overflow-y-auto">
+            <ul class="flex flex-col">
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors" href="{{ url_for('dashboard') }}">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors" href="{{ url_for('transactions') }}">
+                        <span class="material-symbols-outlined">payments</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Transactions</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors" href="{{ url_for('budget') }}">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Budgets</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors" href="{{ url_for('analytics') }}">
+                        <span class="material-symbols-outlined">insights</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest hover:border-r-2 hover:border-primary transition-colors" href="{{ url_for('reports') }}">
+                        <span class="material-symbols-outlined">description</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Reports</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-auto border-t border-white/10 pb-6">
+            <ul class="flex flex-col">
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 bg-primary text-black font-bold rounded-none border-l-4 border-secondary-fixed translate-x-1 transition-transform duration-150" href="{{ url_for('settings') }}">
+                        <span class="material-symbols-outlined" data-weight="fill">settings</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flex items-center gap-4 px-6 py-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" href="{{ url_for('logout') }}">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-64 w-full flex flex-col min-h-screen">
+        <header class="sticky top-0 z-50 flex items-center justify-between w-full h-16 px-6 glass-panel border-b border-white/10">
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl font-bold tracking-tighter text-on-surface">Settings</h1>
+            </div>
+            <div class="flex items-center gap-4 text-primary">
+                <button class="hover:text-white transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+            </div>
+        </header>
+
+        <div class="p-6 md:p-12 flex-1">
+            <div class="max-w-3xl mx-auto">
+                <div class="glass-card p-8 rounded-xl animate-slide-up delay-100 mb-8 border border-white/5">
+                    <h2 class="text-2xl font-bold text-on-surface mb-6">Profile Details</h2>
+                    <div class="flex items-center gap-6 mb-8">
+                        <div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                            <span class="material-symbols-outlined text-primary text-4xl">person</span>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-on-surface">{{ current_user.username }}</p>
+                            <p class="text-sm text-on-surface-variant">{{ current_user.role|capitalize }} Account</p>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Username / Email</label>
+                            <input type="text" value="{{ current_user.username }}" disabled class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg p-3 text-on-surface/50 cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Role</label>
+                            <input type="text" value="{{ current_user.role|capitalize }}" disabled class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg p-3 text-on-surface/50 cursor-not-allowed">
+                        </div>
+                        <div class="pt-4">
+                            <button type="button" class="bg-primary text-black font-bold py-2 px-6 rounded hover:bg-[#FF3B30] transition-colors">
+                                Update Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="glass-card p-8 rounded-xl animate-slide-up delay-200 border border-white/5">
+                    <h2 class="text-2xl font-bold text-on-surface mb-6">Account Actions</h2>
+                    <div class="flex justify-between items-center py-4 border-b border-white/5">
+                        <div>
+                            <p class="font-bold text-on-surface">Sign Out</p>
+                            <p class="text-sm text-on-surface-variant">Log out of your account on this device.</p>
+                        </div>
+                        <a href="{{ url_for('logout') }}" class="border border-primary text-primary hover:bg-primary/10 font-bold py-2 px-6 rounded transition-colors">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

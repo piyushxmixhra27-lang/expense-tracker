@@ -155,5 +155,10 @@ def transactions():
     expenses = Expense.query.filter_by(user_id=current_user.id).all()
     return render_template('transactions.html', expenses=expenses)
 
+@app.route('/settings')
+@login_required
+def settings():
+    return render_template('settings.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
